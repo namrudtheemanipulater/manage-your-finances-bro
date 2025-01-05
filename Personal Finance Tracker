@@ -1,0 +1,34 @@
+from datetime import datetime
+
+
+transactions = []
+
+def log_transaction():
+    date = datetime.now().strftime("%Y-%m-%d")
+    trans_type = input("Type (Income/Expense): ")
+    amount = float(input("Amount: "))
+    category = input("Category: ")
+    transactions.append([date, trans_type, amount, category])
+    print("Transaction logged!")
+
+def view_transactions():
+    if not transactions:
+        print("No transactions to display!")
+        return
+    print("Date        | Type      | Amount  | Category")
+    print("-------------------------------------------")
+    for row in transactions:
+        print(f"{row[0]:<12} {row[1]:<10} ${float(row[2]):<7.2f} {row[3]}")
+
+# Main menu
+while True:
+    print("\n1. Log a transaction\n2. View transactions\n3. Quit")
+    choice = input("Choose an option: ")
+    if choice == "1":
+        log_transaction()
+    elif choice == "2":
+        view_transactions()
+    elif choice == "3":
+        break
+    else:
+        print("Invalid choice!")
